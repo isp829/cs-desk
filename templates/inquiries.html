@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>문의 응대 데스크</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/inquiries">문의 응대 데스크</a>
+    <nav><a href="/inquiries">문의 목록</a><a href="/admin">관리</a></nav>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h1>고객 문의 처리</h1>
+      <p class="muted">주문 정보와 정책을 확인해 AI 답변 초안을 만듭니다.</p>
+      {% if error %}<p class="alert error">{{ error }}</p>{% endif %}
+      <form method="post" action="/inquiries/process" onsubmit="this.querySelector('button').disabled=true; this.querySelector('button').textContent='처리 중... (최대 1~2분)';">
+        <label>고객명<input name="customer_name" value="{{ form_values.customer_name if form_values else '' }}" required></label>
+        <label>주문번호<input name="order_number" placeholder="ORD-1003" value="{{ form_values.order_number if form_values else '' }}" required></label>
+        <label>문의 내용<textarea name="inquiry_text" rows="5" required>{{ form_values.inquiry_text if form_values else '' }}</textarea></label>
+        <button type="submit">문의 처리</button>
+      </form>
+    </section>
+    <section class="card">
+      <div class="section-heading"><h2>문의 목록</h2>
+        <form method="get" action="/inquiries" class="filter">
+          <label>환불 상태<select name="status" onchange="this.form.submit()">
+            {% for option in ["전체", "없음", "환불 대기", "환불완료", "반려"] %}
+            <option value="{{ option }}" {% if selected_status == option %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select></label>
+        </form>
+      </div>
+      {% if inquiries %}
+      <div class="inquiry-list">
+        {% for inquiry in inquiries %}
+        <a class="inquiry-row" href="/inquiries/{{ inquiry.id }}">
+          <div><strong>{{ inquiry.order_number }}</strong><span>{{ inquiry.category }}</span></div>
+          <div class="badges"><span class="badge anger-{{ inquiry.anger }}">불만도 {{ inquiry.anger }}</span><span class="badge">{{ inquiry.refund_status }}</span></div>
+          <p>{{ inquiry.inquiry_text }}</p>
+        </a>
+        {% endfor %}
+      </div>
+      {% else %}<p class="muted">처리된 문의가 없습니다.</p>{% endif %}
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>문의 처리 결과</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/inquiries">문의 응대 데스크</a><nav><a href="/inquiries">문의 목록</a><a href="/admin">관리</a></nav></header>
+  <main class="container">
+    <section class="card">
+      <div class="section-heading"><h1>문의 처리 결과</h1><a href="/inquiries">새 문의</a></div>
+      {% if error %}<p class="alert error">{{ error }}</p>{% endif %}
+      <div class="badges"><span class="badge">{{ inquiry.category }}</span><span class="badge anger-{{ inquiry.anger }}">불만도 {{ inquiry.anger }}</span><span class="badge">{{ inquiry.refund_status }}</span></div>
+      <dl class="details"><dt>고객명</dt><dd>{{ inquiry.customer_name }}</dd><dt>주문번호</dt><dd>{{ inquiry.order_number }}</dd><dt>문의</dt><dd>{{ inquiry.inquiry_text }}</dd></dl>
+    </section>
+    <section class="card draft">
+      <p class="eyebrow">AI가 작성한 초안</p>
+      <p class="reply">{{ inquiry.reply }}</p>
+    </section>
+    <section class="card">
+      <h2>참고한 근거</h2>
+      {% if inquiry.evidence %}
+      <ul class="evidence">
+        {% for item in inquiry.evidence %}
+        <li><strong>{{ item.tool }}</strong><span>{{ item.result }}</span></li>
+        {% endfor %}
+      </ul>
+      {% else %}<p class="muted">기록된 근거가 없습니다.</p>{% endif %}
+      {% if inquiry.refund_status == "환불 대기" %}
+      <div class="actions">
+        <form method="post" action="/inquiries/{{ inquiry.id }}/approve"><button type="submit">환불 승인</button></form>
+        <form method="post" action="/inquiries/{{ inquiry.id }}/reject"><button class="secondary" type="submit">반려</button></form>
+      </div>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

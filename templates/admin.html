@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>관리</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/inquiries">문의 응대 데스크</a><nav><a href="/inquiries">문의 목록</a><a href="/admin">관리</a></nav></header>
+  <main class="container narrow">
+    <section class="card">
+      <h1>데이터 초기화</h1>
+      <p class="muted">문의와 주문을 지우고 샘플 주문 20건을 다시 만듭니다.</p>
+      {% if error %}<p class="alert error">{{ error }}</p>{% endif %}
+      {% if message %}<p class="alert success">{{ message }}</p>{% endif %}
+      <form method="post" action="/admin/reset">
+        <label>관리자 비밀번호<input type="password" name="admin_password" required></label>
+        <button type="submit">초기화</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

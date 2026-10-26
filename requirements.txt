@@ -1,0 +1,11 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+gunicorn==23.0.0
+python-multipart==0.0.20
+azure-identity==1.19.0
+azure-data-tables==12.7.0
+azure-keyvault-secrets==4.9.0
+azure-monitor-opentelemetry==1.6.4
+agent-framework-github-copilot==2.1.0
+github-copilot-sdk==1.0.26
+agent-framework-orchestrations==1.4.0
