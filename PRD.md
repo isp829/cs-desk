@@ -80,8 +80,8 @@
 
 | 화면 | 내용 |
 |---|---|
-| 메인 | 문의 입력 폼, 처리 결과(유형·불만도·답변·근거), 환불 승인/반려 |
-| 문의 목록 | 불만도 순 정렬, 유형, 불만도, 환불 상태 필터 |
+| 메인 | 문의 입력 폼, 문의 목록(불만도 순 정렬, 환불 상태 필터) |
+| 문의 처리 결과 | 유형·불만도·환불 상태, AI 답변 초안, 참고한 근거, 환불 승인/반려 |
 | 관리 | 데이터 초기화 |
 
 PC와 모바일 화면 모두에서 사용할 수 있다.
@@ -99,8 +99,8 @@ PC와 모바일 화면 모두에서 사용할 수 있다.
 | 모니터링 | Azure Application Insights |
 | 호스팅 | Azure App Service (Linux 컨테이너, B1) |
 
-- 앱은 연결 문자열이나 비밀번호를 코드나 환경변수에 직접 두지 않는다. Managed Identity로 Key Vault와 Table Storage에 접근한다.
-
+- GitHub 토큰과 관리자 비밀번호는 코드나 앱 설정에 두지 않고 Key Vault에만 보관한다. 앱은 Managed Identity로 Key Vault와 Table Storage에 접근한다. 앱 설정에는 Key Vault 주소, Storage 주소, Application Insights 연결 문자열만 둔다.
+- 
 ## 9. 데모 이용 방법
 
 - 로그인 없이 배포 링크로 접속한다.
