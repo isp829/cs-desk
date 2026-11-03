@@ -100,7 +100,7 @@ PC와 모바일 화면 모두에서 사용할 수 있다.
 | 호스팅 | Azure App Service (Linux 컨테이너, B1) |
 
 - GitHub 토큰과 관리자 비밀번호는 코드나 앱 설정에 두지 않고 Key Vault에만 보관한다. 앱은 Managed Identity로 Key Vault와 Table Storage에 접근한다. 앱 설정에는 Key Vault 주소, Storage 주소, Application Insights 연결 문자열만 둔다.
-- 
+
 ## 9. 데모 이용 방법
 
 - 로그인 없이 배포 링크로 접속한다.
