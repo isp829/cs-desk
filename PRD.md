@@ -94,7 +94,7 @@ PC와 모바일 화면 모두에서 사용할 수 있다.
 | 에이전트 | Microsoft Agent Framework (`agent-framework-github-copilot`) |
 | 모델 연결 | GitHub Copilot SDK |
 | 데이터 | Azure Table Storage (주문, 문의 기록) |
-| 비밀 정보 | Azure Key Vault (`GITHUB_TOKEN`, `ADMIN_PASSWORD`) |
+| 비밀 정보 | Azure Key Vault (`GITHUB-TOKEN`, `ADMIN-PASSWORD`) |
 | 인증 | App Service Managed Identity (Storage, Key Vault 접근) |
 | 모니터링 | Azure Application Insights |
 | 호스팅 | Azure App Service (Linux 컨테이너, B1) |
