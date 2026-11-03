@@ -2,7 +2,7 @@
 
 대상 사용자: 하루 수십 건의 고객 문의를 직접 처리하는 소규모 온라인 쇼핑몰 운영자
 
-기획서: [기획서(PRD).md](<기획서(PRD).md>)
+기획서: [기획서(PRD).md](<PRD.md>)
 
 배포 링크: https://cs-desk-isp829.azurewebsites.net
 
